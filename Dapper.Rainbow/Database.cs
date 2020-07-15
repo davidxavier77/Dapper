@@ -74,7 +74,7 @@ namespace Dapper
             /// <param name="id">The primary key of the row to update.</param>
             /// <param name="data">The new object data.</param>
             /// <returns>The number of rows affected.</returns>
-            public int Update(TId id, dynamic data)
+            public long Update(TId id, dynamic data)
             {
                 List<string> paramNames = GetParamNames((object)data);
 
@@ -343,7 +343,7 @@ namespace Dapper
         /// <param name="sql">The SQL to execute.</param>
         /// <param name="param">The parameters to use.</param>
         /// <returns>The number of rows affected.</returns>
-        public int Execute(string sql, dynamic param = null) =>
+        public long Execute(string sql, dynamic param = null) =>
             _connection.Execute(sql, param as object, _transaction, _commandTimeout);
 
         /// <summary>

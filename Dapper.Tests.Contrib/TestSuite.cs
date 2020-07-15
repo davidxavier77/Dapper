@@ -36,14 +36,14 @@ namespace Dapper.Tests.Contrib
     public interface IUser
     {
         [Key]
-        int Id { get; set; }
+        long Id { get; set; }
         string Name { get; set; }
         int Age { get; set; }
     }
 
     public class User : IUser
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
         public string Name { get; set; }
         public int Age { get; set; }
     }
@@ -79,7 +79,7 @@ namespace Dapper.Tests.Contrib
     [Table("Automobiles")]
     public class Car
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
         public string Name { get; set; }
         [Computed]
         public string Computed { get; set; }

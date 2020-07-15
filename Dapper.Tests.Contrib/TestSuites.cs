@@ -21,9 +21,9 @@ namespace Dapper.Tests.Contrib
 
     public class SqlServerTestSuite : TestSuite
     {
-        private const string DbName = "tempdb";
+        private const string DbName = "dappertest";
         public static string ConnectionString =>
-            GetConnectionString("SqlServerConnectionString", $"Data Source=.;Initial Catalog={DbName};Integrated Security=True");
+            GetConnectionString("SqlServerConnectionString", $"Data Source=.;Initial Catalog={DbName};uid=sa;password=Gurisgr8");
 
         public override IDbConnection GetConnection() => new SqlConnection(ConnectionString);
 

@@ -363,7 +363,7 @@ insert #users16726709 values ('Fred','Bloggs') insert #users16726709 values ('To
             connection.Execute("create table #t(i int)");
             try
             {
-                int tally = connection.Execute("insert #t (i) values(@a)", new[] { new { a = 1 }, new { a = 2 }, new { a = 3 }, new { a = 4 } });
+                long tally = connection.Execute("insert #t (i) values(@a)", new[] { new { a = 1 }, new { a = 2 }, new { a = 3 }, new { a = 4 } });
                 int sum = connection.Query<int>("select sum(i) from #t").First();
                 Assert.Equal(4, tally);
                 Assert.Equal(10, sum);
@@ -386,7 +386,7 @@ insert #users16726709 values ('Fred','Bloggs') insert #users16726709 values ('To
             connection.Execute("create table #t(Name nvarchar(max), Age int)");
             try
             {
-                int tally = connection.Execute("insert #t (Name,Age) values(@Name, @Age)", new List<Student>(2)
+                long  tally = connection.Execute("insert #t (Name,Age) values(@Name, @Age)", new List<Student>(2)
             {
                 new Student{Age = 1, Name = "sam"},
                 new Student{Age = 2, Name = "bob"}
@@ -405,7 +405,7 @@ insert #users16726709 values ('Fred','Bloggs') insert #users16726709 values ('To
         public void TestExecuteMultipleCommandObjectArray()
         {
             connection.Execute("create table #t(i int)");
-            int tally = connection.Execute("insert #t (i) values(@a)", new object[] { new { a = 1 }, new { a = 2 }, new { a = 3 }, new { a = 4 } });
+            long tally = connection.Execute("insert #t (i) values(@a)", new object[] { new { a = 1 }, new { a = 2 }, new { a = 3 }, new { a = 4 } });
             int sum = connection.Query<int>("select sum(i) from #t drop table #t").First();
             Assert.Equal(4, tally);
             Assert.Equal(10, sum);

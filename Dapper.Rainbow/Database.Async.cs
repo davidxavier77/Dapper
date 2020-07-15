@@ -35,7 +35,7 @@ namespace Dapper
             /// <param name="id">The Id of the record to update.</param>
             /// <param name="data">The new record.</param>
             /// <returns>The number of affected rows.</returns>
-            public Task<int> UpdateAsync(TId id, dynamic data)
+            public Task<long> UpdateAsync(TId id, dynamic data)
             {
                 List<string> paramNames = GetParamNames((object)data);
 
@@ -87,7 +87,7 @@ namespace Dapper
         /// <param name="sql">The SQL to execute.</param>
         /// <param name="param">The parameters to use.</param>
         /// <returns>The number of rows affected.</returns>
-        public Task<int> ExecuteAsync(string sql, dynamic param = null) =>
+        public Task<long> ExecuteAsync(string sql, dynamic param = null) =>
             _connection.ExecuteAsync(sql, param as object, _transaction, _commandTimeout);
 
         /// <summary>

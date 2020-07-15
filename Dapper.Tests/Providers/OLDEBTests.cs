@@ -142,8 +142,8 @@ namespace Dapper.Tests
             {
                 var data = new { x = 6 };
                 connection.Execute("create table #named_single(val int not null)");
-                int count = connection.Execute("insert #named_single (val) values (?x?)", data);
-                int sum = (int)connection.ExecuteScalar("select sum(val) from #named_single");
+                long count = connection.Execute("insert #named_single (val) values (?x?)", data);
+                long sum = (long)connection.ExecuteScalar("select sum(val) from #named_single");
                 Assert.Equal(1, count);
                 Assert.Equal(6, sum);
             }
@@ -161,8 +161,8 @@ namespace Dapper.Tests
                     new { x = 6, y = 1 },
                 };
                 connection.Execute("create table #named_multi(val int not null)");
-                int count = connection.Execute("insert #named_multi (val) values (?x?)", data);
-                int sum = (int)connection.ExecuteScalar("select sum(val) from #named_multi");
+                long count = connection.Execute("insert #named_multi (val) values (?x?)", data);
+                long sum = (long)connection.ExecuteScalar("select sum(val) from #named_multi");
                 Assert.Equal(3, count);
                 Assert.Equal(10, sum);
             }
